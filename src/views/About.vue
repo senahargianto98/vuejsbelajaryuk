@@ -41,7 +41,7 @@
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <div v-if="user.profile.length">
-          <h1 v-for="todo in user.profile">{{ todo }}</h1>
+          <Card/>
         </div>
         <div v-else>
           <p >No todos left!</p>
@@ -49,20 +49,7 @@
       </v-tab-item>
       
       <v-tab-item>
-          <v-row>
-            <v-col>
-              <v-sheet height="400">
-                <v-calendar
-                  ref="calendar"
-                  :now="today"
-                  :value="today"
-                  :events="events"
-                  color="primary"
-                  type="week"
-                ></v-calendar>
-              </v-sheet>
-            </v-col>
-          </v-row>
+        <Calender/>
       </v-tab-item>
 
     </v-tabs-items>
@@ -71,20 +58,18 @@
 
 <script>
 import axios from "axios";
+import Card from '../components/Card.vue'
+import Calender from '../components/Calender.vue'
 
 export default {
   data () {
     return {
       tab: null,
-      today: '2021-06-02',
-      events: [
-        {
-          name: 'Jadwal Ngajar Sena',
-          start: '2021-06-02 09:00',
-          end: '2021-06-02 10:00',
-        },
-      ],
     }
+  },
+  components:{
+    Card,
+    Calender,
   },
   methods: {
     async logout() {

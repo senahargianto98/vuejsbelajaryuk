@@ -32,14 +32,26 @@
 
           <v-text-field
             v-model="password"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="show1 ? 'text' : 'password'"
+            name="input-10-1"
             label="Password"
-            required
+            hint="Password 4 Karakter"
+            counter
+            @click:append="show1 = !show1"
           ></v-text-field>
-
+ 
           <v-text-field
             v-model="password_confirm"
+            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="show2 ? 'text' : 'password'"
+            name="input-10-1"
             label="Password Confirm"
-            required
+            hint="Password 4 Karakter dan harus sama"
+            counter
+            @click:append="show2 = !show2"
           ></v-text-field>
 
           <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
@@ -66,6 +78,12 @@ export default {
       password: '',
       password_confirm: '',
       errors: [],
+      show1: false,
+      show2: false,
+      rules: {
+        required: value => !!value || 'Masukkan Password.',
+        min: v => v.length >= 4 || 'Min 4 characters',
+      },
     }
   },
   methods: {
