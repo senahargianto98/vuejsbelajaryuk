@@ -44,12 +44,17 @@
           <Card/>
         </div>
         <div v-else>
-          <p >No todos left!</p>
+          <ProfileForm/>
         </div>
       </v-tab-item>
       
       <v-tab-item>
-        <Calender/>
+        <div v-if="user.profile.length">
+          <Calender/>
+        </div>
+        <div v-else>
+          <p >Isi Data Diri Terlebih Dahulu!</p>
+        </div>
       </v-tab-item>
 
     </v-tabs-items>
@@ -60,6 +65,7 @@
 import axios from "axios";
 import Card from '../components/Card.vue'
 import Calender from '../components/Calender.vue'
+import ProfileForm from '../components/ProfileForm.vue'
 
 export default {
   data () {
@@ -70,6 +76,7 @@ export default {
   components:{
     Card,
     Calender,
+    ProfileForm,
   },
   methods: {
     async logout() {
