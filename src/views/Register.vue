@@ -13,9 +13,12 @@
             dense
             outlined
             type="error"
-            v-if="errors.length"
+            v-if="errors.username"
           >
-          <p v-for="error in errors">{{ error }}</p>
+          <p>{{ errors.username }}</p>
+          <p>{{ errors.email }}</p>
+          <p>{{ errors.password }}</p>
+
           </v-alert>
 
           <v-text-field
@@ -86,27 +89,23 @@ export default {
       },
     }
   },
-  methods: {
-    async submit() {
 
-      try {
-        await axios.post('register', {
-          username: this.username,
-          email: this.email,
-          password: this.password,
-          password_confirm: this.password_confirm,
-        });
-        await this.$router.push('/');
-      } 
-      
-      catch (e) {
-        if (!this.errors.length) {
-          this.errors.push('Perhatikan Email dan Username tidak di gunakan sebelumnya, dan Password yang di ketikkan sama');
-        }
+methods: {
+    submit(){
+     axios.post('register', {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        password_confirm: this.password_confirm,
+     }).then(response => {
+      console.log('register');
+     }).catch(error => {
+     if (error.response.status == 422){
+       this.errors = error.response.data.errors;
       }
-      
-    }
+    })
   }
+}
 }
 </script>
 
