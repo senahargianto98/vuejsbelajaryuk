@@ -8,23 +8,26 @@
         <v-form  @submit.prevent="submit">
 
           <h1>Register</h1>
-
-          <v-alert
-            dense
-            outlined
-            type="error"
-            v-if="errors.username"
-          >
-          <p>{{ errors.username }}</p>
-          <p>{{ errors.email }}</p>
-          <p>{{ errors.password }}</p>
-
-          </v-alert>
-
+          <div>
+            <v-alert type="error" v-if="errors.username">
+              {{ errors.username[0] }}
+            </v-alert>
+            <v-alert type="error" v-if="errors.email">
+              {{ errors.email[0] }}
+            </v-alert>
+            <v-alert type="error" v-if="errors.password">
+              {{ errors.password[0] }}
+            </v-alert>
+            <v-alert type="error" v-if="errors.password_confirm">
+              {{ errors.password_confirm[0] }}
+            </v-alert>
+          </div>
+    
           <v-text-field
             v-model="username"
             label="Username"
             required
+            hint="Contoh username:sena_hargianto_febri"
           ></v-text-field>
 
           <v-text-field
@@ -36,7 +39,6 @@
           <v-text-field
             v-model="password"
             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]"
             :type="show1 ? 'text' : 'password'"
             name="input-10-1"
             label="Password"
@@ -48,7 +50,6 @@
           <v-text-field
             v-model="password_confirm"
             :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]"
             :type="show2 ? 'text' : 'password'"
             name="input-10-1"
             label="Password Confirm"
@@ -83,10 +84,6 @@ export default {
       errors: [],
       show1: false,
       show2: false,
-      rules: {
-        required: value => !!value || 'Masukkan Password.',
-        min: v => v.length >= 4 || 'Min 4 characters',
-      },
     }
   },
 
@@ -98,7 +95,7 @@ methods: {
         password: this.password,
         password_confirm: this.password_confirm,
      }).then(response => {
-      console.log('register');
+      console.log('/');
      }).catch(error => {
      if (error.response.status == 422){
        this.errors = error.response.data.errors;
