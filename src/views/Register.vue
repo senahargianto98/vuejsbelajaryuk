@@ -27,7 +27,7 @@
             v-model="username"
             label="Username"
             required
-            hint="Contoh username:sena_hargianto_febri"
+            hint="Contoh username: sena_hargianto_febri"
           ></v-text-field>
 
           <v-text-field
@@ -95,7 +95,7 @@ methods: {
         password: this.password,
         password_confirm: this.password_confirm,
      }).then(response => {
-      console.log('/');
+        window.location.href = '/login';
      }).catch(error => {
      if (error.response.status == 422){
        this.errors = error.response.data.errors;

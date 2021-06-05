@@ -41,11 +41,33 @@
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <div v-if="user.profile.length">
-          <Card/>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-lg-6">
+                <Card/>
+              </div>
+              <div class="col-sm-3">
+              </div>
+            </div>
+          </div>
         </div>
+
         <div v-else>
-          <ProfileForm/>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+              </div>
+              <div class="col-sm">
+                <ProfileForm/>
+              </div>
+              <div class="col-sm">
+              </div>
+            </div>
+          </div>
         </div>
+        
       </v-tab-item>
       
       <v-tab-item>
