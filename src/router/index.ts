@@ -10,10 +10,10 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   { 
-    path: '',
+    path: '/redirect',
     component: Layout,
     children: [
-        {path: '', redirect: '/login'},
+        {path: '/redirect', redirect: '/login'},
         {path: '/profile', component: About},
     ]
   },
@@ -21,6 +21,11 @@ const routes: Array<RouteConfig> = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
   },
   {
     path: '/register',

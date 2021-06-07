@@ -26,12 +26,7 @@
           </v-tab>
 
           <v-tab>
-            <v-badge
-              color="green"
-              content="6"
-            >
-              Jadwal
-            </v-badge>
+            Jadwal
           </v-tab>
         
         </v-tabs>

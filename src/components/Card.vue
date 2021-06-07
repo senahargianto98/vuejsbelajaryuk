@@ -57,9 +57,9 @@
         <v-timeline-item color="purple" icon="mdi-card-text-outline" large>
           <div>
             <div class="font-weight-normal">
-              <strong>Motivasi</strong>
+              <strong>Pengalaman Mengajar</strong>
             </div>
-            <div v-for="users in user.profile">{{ users.motivasi }}</div>
+            <div v-for="users in user.profile">{{ users.pengalaman }}</div>
           </div>
         </v-timeline-item>
       </v-timeline>
