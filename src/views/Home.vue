@@ -6,9 +6,12 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
+        <v-btn>
+          <div>
+            Mengajar di Belajar yuk
+          </div>
         </v-btn>
+
       </v-toolbar>
     </v-card>
 

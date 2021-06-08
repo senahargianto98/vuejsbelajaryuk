@@ -34,7 +34,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="jadwal_start"
-                    label="Hari Mulai Mengajar"
+                    label="Hari Les"
                     prepend-icon="mdi-calendar"
                     readonly
                     v-bind="attrs"
@@ -62,7 +62,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="time_start"
-                    label="Jam Mulai Mengajar"
+                    label="Jam Mulai Les"
                     prepend-icon="mdi-clock-time-four-outline"
                     readonly
                     v-bind="attrs"
@@ -93,7 +93,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="time_end"
-                    label="Jam Selesai Mengajar"
+                    label="Jam Selesai Les"
                     prepend-icon="mdi-clock-time-four-outline"
                     readonly
                     v-bind="attrs"

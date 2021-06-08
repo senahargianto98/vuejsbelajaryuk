@@ -1,14 +1,18 @@
 <template>
   <div>
+
     <v-card color="grey lighten-4" flat tile>
       <v-toolbar dense>
         <v-toolbar-title>Belajar Yuk</v-toolbar-title>
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
+        <v-btn>
+          <div>
+            Mengajar di Belajar yuk
+          </div>
         </v-btn>
+
       </v-toolbar>
     </v-card>
 
@@ -18,107 +22,110 @@
       </div>
     </div>
 
-    <div>
+    <div v-for="user in users" v-if="user.mengajar == 'fisika'">
       <v-card class="mx-auto" max-width="480">
         <v-card-title class="black--text mt-8">
           <v-avatar size="100">
-            <img
-              alt="user"
-              src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
-            />
+            <img alt="user" :src="'http://localhost:8000' + user.foto_profile" />
           </v-avatar>
-          <p class="ml-3">John Doe</p>
+          <p class="ml-3">{{ user.nama }}</p>
         </v-card-title>
 
         <v-card-actions>
-          <v-btn color="orange lighten-2" @click="show = !show" text>
-            Lihat Profile
-          </v-btn>
-
           <v-spacer></v-spacer>
+
+          <v-btn color="orange lighten-2" :href="'/student/' + user.user_uuid">
+            Hire
+          </v-btn>
         </v-card-actions>
+        <v-card-text>
+          <div class="font-weight-bold ml-8 mb-2">Data Diri</div>
+          <v-timeline align-top dense>
+            <v-timeline-item color="purple" small icon="mdi-school">
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Sekolah</strong>
+                </div>
+                <div>{{ user.sekolah }}</div>
+              </div>
+            </v-timeline-item>
 
-        <v-expand-transition>
-          <div v-show="show">
-            <v-divider></v-divider>
+            <v-timeline-item color="purple" small icon="mdi-phone">
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Phone</strong>
+                </div>
+                <div>{{ user.phone }}</div>
+              </div>
+            </v-timeline-item>
 
-            <v-card-text>
-              <div class="font-weight-bold ml-8 mb-2">Data Diri</div>
-              <v-timeline align-top dense>
-                <v-timeline-item color="purple" large icon="mdi-school">
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>Sekolah</strong>
-                    </div>
-                    <div></div>
-                  </div>
-                </v-timeline-item>
+            <v-timeline-item color="purple" small icon="mdi-certificate">
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Jurusan</strong>
+                </div>
+                <div>{{ user.jurusan }}</div>
+              </div>
+            </v-timeline-item>
 
-                <v-timeline-item color="purple" large icon="mdi-phone">
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>Phone</strong>
-                    </div>
-                    <div></div>
-                  </div>
-                </v-timeline-item>
+            <v-timeline-item color="purple" small icon="mdi-teach">
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Mengajar</strong>
+                </div>
+                <div>{{ user.mengajar }}</div>
+              </div>
+            </v-timeline-item>
 
-                <v-timeline-item color="purple" large icon="mdi-certificate">
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>Jurusan</strong>
-                    </div>
-                    <div></div>
-                  </div>
-                </v-timeline-item>
+            <v-timeline-item color="purple" small icon="mdi-calendar">
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Jadwal</strong>
+                </div>
+                <div>
+                  {{ user.jadwal_start }} pukul {{ user.time_start }} sd
+                  {{ user.jadwal_end }} pukul {{ user.time_end }}
+                </div>
+              </div>
+            </v-timeline-item>
 
-                <v-timeline-item color="purple" large icon="mdi-teach">
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>Mengajar</strong>
-                    </div>
-                    <div></div>
-                  </div>
-                </v-timeline-item>
+            <v-timeline-item color="purple" small icon="mdi-account-cash">
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Tarif</strong>
+                </div>
+                <div>Rp.{{ user.tarif }}</div>
+              </div>
+            </v-timeline-item>
 
-                <v-timeline-item color="purple" large icon="mdi-calendar">
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>Jadwal</strong>
-                    </div>
-                    <div></div>
-                  </div>
-                </v-timeline-item>
-
-                <v-timeline-item
-                  color="purple"
-                  icon="mdi-card-text-outline"
-                  large
-                >
-                  <div>
-                    <div class="font-weight-normal">
-                      <strong>Pengalaman Mengajar</strong>
-                    </div>
-                    <div></div>
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-card-text>
-          </div>
-        </v-expand-transition>
+            <v-timeline-item color="purple" icon="mdi-card-text-outline" small>
+              <div>
+                <div class="font-weight-normal">
+                  <strong>Pengalaman Mengajar</strong>
+                </div>
+                <div>{{ user.pengalaman }}</div>
+              </div>
+            </v-timeline-item>
+          </v-timeline>
+        </v-card-text>
       </v-card>
     </div>
-    
   </div>
 </template>
 
-
 <script>
+import axios from "axios";
+
 export default {
   data: () => ({
     show: false,
     model: null,
+    users: [],
   }),
+  async mounted() {
+    const { data } = await axios.get(`profile`);
+    this.users = data;
+  },
 };
 </script>
 

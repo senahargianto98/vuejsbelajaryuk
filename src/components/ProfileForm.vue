@@ -34,7 +34,12 @@
     </div>
 
     <div class="mb-3">
-      <v-text-field label="Mengajar" v-model="mengajar" />
+        <v-select
+          v-model="mengajar"
+          :items="items"
+          label="Standard"
+          dense
+        ></v-select>
     </div>
 
     <div class="mb-3">
@@ -183,6 +188,7 @@ export default {
       menu3: false,
       time_end:'',
       time_start:'',
+      items: ['matematika', 'fisika', 'web programming'],
     };
   },
   computed: {
