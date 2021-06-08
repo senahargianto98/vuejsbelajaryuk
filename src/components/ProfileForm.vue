@@ -6,6 +6,14 @@
     </div>
 
     <div class="mb-3">
+      <input v-model="user_uuid" hidden class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <input v-model="user_id" hidden class="form-control" />
+    </div>
+
+    <div class="mb-3">
       <v-text-field label="Nama" v-model="nama" />
     </div>
 
@@ -14,7 +22,7 @@
     </div>
 
     <div class="mb-3">
-      <input hidden v-model="user_id" class="form-control" />
+      <v-text-field label="Tarif" hint="Penulisan Uang Contoh 10.000 " v-model="tarif" />
     </div>
 
     <div class="mb-3">
@@ -50,7 +58,6 @@
         </template>
         <v-date-picker
           v-model="jadwal_start"
-          :max="new Date().toISOString().substr(0, 10)"
           @change="save"
         ></v-date-picker>
       </v-menu>
@@ -109,7 +116,6 @@
         </template>
         <v-date-picker
           v-model="jadwal_end"
-          :max="new Date().toISOString().substr(0, 10)"
           @change="save1"
         ></v-date-picker>
       </v-menu>
@@ -117,7 +123,7 @@
 
     <div class="mb-3">
       <v-menu
-        ref="menu1"
+        ref="menu3"
         v-model="menu3"
         :close-on-content-click="false"
         :nudge-right="40"
@@ -142,7 +148,7 @@
           v-model="time_end"
           format="24hr"
           full-width
-          @click:minute="$refs.menu1.save(time_end)"
+          @click:minute="$refs.menu3.save(time_end)"
         ></v-time-picker>
       </v-menu>
     </div>
@@ -167,6 +173,7 @@ export default {
       pengalaman: "",
       jadwal_start: "",
       jadwal_end: "",
+      tarif: "",
       jurusan: "",
       foto_profile: "",
       phone: "",
@@ -184,6 +191,11 @@ export default {
         return this.$store.state.user.id;
       },
     },
+    user_uuid: {
+      get() {
+        return this.$store.state.user.user_uuid;
+      },
+    },
   },
   methods: {
     selectFile(event) {
@@ -198,6 +210,8 @@ export default {
     async submit() {
       const data = new FormData();
       data.append("user_id", this.user_id);
+      data.append("user_uuid", this.user_uuid);
+      data.append("tarif", this.tarif);
       data.append("nama", this.nama);
       data.append("sekolah", this.sekolah);
       data.append("jurusan", this.jurusan);

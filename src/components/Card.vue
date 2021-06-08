@@ -25,6 +25,15 @@
           </div>
         </v-timeline-item>
 
+        <v-timeline-item color="purple" large icon="mdi-phone">
+          <div>
+            <div class="font-weight-normal">
+              <strong>Phone</strong>
+            </div>
+            <div v-for="users in user.profile">{{ users.phone }}</div>
+          </div>
+        </v-timeline-item>
+
         <v-timeline-item color="purple" large icon="mdi-certificate">
           <div>
             <div class="font-weight-normal">
@@ -49,7 +58,18 @@
               <strong>Jadwal</strong>
             </div>
             <div v-for="users in user.profile">
-              {{ users.jadwal_start }} sd {{ users.jadwal_end }}
+              {{ users.jadwal_start }} pukul {{ users.time_start }} sd {{ users.jadwal_end }} pukul {{ users.time_end }}
+            </div>
+          </div>
+        </v-timeline-item>
+
+        <v-timeline-item color="purple" large icon="mdi-account-cash">
+          <div>
+            <div class="font-weight-normal">
+              <strong>Tarif</strong>
+            </div>
+            <div v-for="users in user.profile">
+              Rp.{{ users.tarif }}
             </div>
           </div>
         </v-timeline-item>

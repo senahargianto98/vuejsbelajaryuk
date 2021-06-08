@@ -165,28 +165,27 @@ export default {
   data: () => ({
     show: false,
     model: null,
-    products: [],
     items: [
       {
         color: "#1F7087",
         src: "https://cdn-2.tstatic.net/newsmaker/foto/bank/images/ilustrasi-matematika-soal-dan-kunci-jawaban-latihan-usbn.jpg",
         title: "Matematika",
         artist: "Di belajaryuk kami memiliki guru-guru private terbaik yang berpengalaman mengajar, harga mulai 100 ribu loh!!!",
-        href: "/",
+        href: "/matematika",
       },
       {
         color: "#952175",
         src: "https://assets.kompasiana.com/items/album/2020/05/13/file-20171025-25516-g7rtyl-5ebbd84a097f360c0a2fe932.jpg?t=o&v=740&x=416",
         title: "Fisika",
         artist: "Belajar bersama kami dengan pengajar lulusan Universitas Indonesia hingga pengajar berpengalaman di BTA",
-        href: "/",
+        href: "/fisika",
       },
       {
         color: "pink darken-2",
         src: "https://miro.medium.com/max/12032/0*Fu_vcP7P_uHF1Szk",
         title: "Web Programming",
         artist: "Belajar Programmer dari para builder belajaryuk dan programmer yang sudah berpengalaman di startup",
-        href: "/",
+        href: "/web",
       },
     ],
   }),
