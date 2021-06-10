@@ -52,17 +52,16 @@
         <div v-else>
           <div class="container">
             <div class="row">
-              <div class="col-sm">
+              <div class="col-sm-3">
               </div>
-              <div class="col-sm">
+              <div class="col-lg-6">
                 <ProfileForm/>
               </div>
-              <div class="col-sm">
+              <div class="col-sm-3">
               </div>
             </div>
           </div>
-        </div>
-        
+        </div>        
       </v-tab-item>
       
       <v-tab-item>

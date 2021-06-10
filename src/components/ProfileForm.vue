@@ -1,12 +1,49 @@
 <template>
   <form enctype="multipart/form-data" @submit.prevent="submit">
+     
+    <div>
+      <v-alert type="error" v-if="errors.nama">
+        {{ errors.nama[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.foto_profile">
+        {{ errors.foto_profile[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.phone">
+        {{ errors.phone[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.sekolah">
+        {{ errors.sekolah[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.jurusan">
+        {{ errors.jurusan[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.mengajar">
+        {{ errors.mengajar[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.time_start">
+        {{ errors.time_start[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.end">
+        {{ errors.time_end[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.jadwal_start">
+        {{ errors.jadwal_start[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.jadwal_end">
+        {{ errors.jadwal_end[0] }}
+      </v-alert>
+      <v-alert type="error" v-if="errors.tarif">
+        {{ errors.tarif[0] }}
+      </v-alert>
+    </div>
+
     <div class="mb-3">
       <h6>Foto Profile</h6>
       <input type="file" @change="selectFile" />
     </div>
 
     <div class="mb-3">
-      <input v-model="user_uuid" hidden class="form-control">
+      <input v-model="user_uuid" hidden class="form-control" />
     </div>
 
     <div class="mb-3">
@@ -34,12 +71,7 @@
     </div>
 
     <div class="mb-3">
-        <v-select
-          v-model="mengajar"
-          :items="items"
-          label="Standard"
-          dense
-        ></v-select>
+      <v-select v-model="mengajar" :items="items" label="Mengajar" dense></v-select>
     </div>
 
     <div class="mb-3">
@@ -61,10 +93,7 @@
             v-on="on"
           ></v-text-field>
         </template>
-        <v-date-picker
-          v-model="jadwal_start"
-          @change="save"
-        ></v-date-picker>
+        <v-date-picker v-model="jadwal_start" @change="save"></v-date-picker>
       </v-menu>
     </div>
 
@@ -119,10 +148,7 @@
             v-on="on"
           ></v-text-field>
         </template>
-        <v-date-picker
-          v-model="jadwal_end"
-          @change="save1"
-        ></v-date-picker>
+        <v-date-picker v-model="jadwal_end" @change="save1"></v-date-picker>
       </v-menu>
     </div>
 
@@ -183,12 +209,13 @@ export default {
       foto_profile: "",
       phone: "",
       menu: false,
-      menu1: false,        
+      menu1: false,
       menu2: false,
       menu3: false,
-      time_end:'',
-      time_start:'',
-      items: ['matematika', 'fisika', 'web programming'],
+      time_end: "",
+      time_start: "",
+      errors:[],
+      items: ["matematika", "fisika", "web programming"],
     };
   },
   computed: {
@@ -214,23 +241,29 @@ export default {
       this.$refs.menu1.save(jadwal_end);
     },
     async submit() {
-      const data = new FormData();
-      data.append("user_id", this.user_id);
-      data.append("user_uuid", this.user_uuid);
-      data.append("tarif", this.tarif);
-      data.append("nama", this.nama);
-      data.append("sekolah", this.sekolah);
-      data.append("jurusan", this.jurusan);
-      data.append("mengajar", this.mengajar);
-      data.append("phone", this.phone);
-      data.append("pengalaman", this.pengalaman);
-      data.append("jadwal_start", this.jadwal_start);
-      data.append("jadwal_end", this.jadwal_end);
-      data.append("time_start", this.time_start);
-      data.append("time_end", this.time_end);
-      data.append("foto_profile", this.foto_profile);
-      await axios.post("profile/post", data);
-      window.location.href = "/profile";
+      try {
+        const data = new FormData();
+        data.append("user_id", this.user_id);
+        data.append("user_uuid", this.user_uuid);
+        data.append("tarif", this.tarif);
+        data.append("nama", this.nama);
+        data.append("sekolah", this.sekolah);
+        data.append("jurusan", this.jurusan);
+        data.append("mengajar", this.mengajar);
+        data.append("phone", this.phone);
+        data.append("pengalaman", this.pengalaman);
+        data.append("jadwal_start", this.jadwal_start);
+        data.append("jadwal_end", this.jadwal_end);
+        data.append("time_start", this.time_start);
+        data.append("time_end", this.time_end);
+        data.append("foto_profile", this.foto_profile);
+        await axios.post("profile/post", data);
+        window.location.href = "/profile";
+      } catch (error) {
+        if (error.response.status == 422) {
+          this.errors = error.response.data.errors;
+        }
+      }
     },
   },
 };

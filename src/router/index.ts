@@ -9,6 +9,8 @@ import StudentForm from '../views/StudentForm.vue'
 import Matematika from '../views/Matematika.vue'
 import Fisika from '../views/Fisika.vue'
 import Web from '../views/Web.vue'
+import Sukses from '../views/Sukses.vue'
+import ProfileEditForm from '../views/ProfileEditForm.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +21,7 @@ const routes: Array<RouteConfig> = [
     children: [
         {path: '/redirect', redirect: '/login'},
         {path: '/profile', component: Template},
+        {path: '/profile/edit/:id',component: ProfileEditForm},
     ]
   },
   {
@@ -30,6 +33,11 @@ const routes: Array<RouteConfig> = [
     path: '/matematika',
     name: 'Matematika',
     component: Matematika
+  },
+  {
+    path: '/sukses',
+    name: 'Sukses',
+    component: Sukses
   },
   {
     path: '/fisika',

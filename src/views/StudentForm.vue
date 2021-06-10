@@ -163,7 +163,7 @@ export default {
       if (this.$route.params.id) {
         await axios.post(`student/post`, data);
       } 
-      await this.$router.push('/');
+      await this.$router.push('/sukses');
     }
   }
 };

@@ -6,9 +6,11 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn>
+        <v-btn
+        href="/register"
+        >
           <div>
-            Mengajar di Belajar yuk
+            NgajarYuk
           </div>
         </v-btn>
 

@@ -7,9 +7,11 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn>
+        <v-btn
+        href="/register"
+        >
           <div>
-            Mengajar di Belajar yuk
+            NgajarYuk
           </div>
         </v-btn>
 
@@ -47,15 +49,6 @@
                   <strong>Sekolah</strong>
                 </div>
                 <div>{{ user.sekolah }}</div>
-              </div>
-            </v-timeline-item>
-
-            <v-timeline-item color="purple" small icon="mdi-phone">
-              <div>
-                <div class="font-weight-normal">
-                  <strong>Phone</strong>
-                </div>
-                <div>{{ user.phone }}</div>
               </div>
             </v-timeline-item>
 
