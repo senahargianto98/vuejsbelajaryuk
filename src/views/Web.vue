@@ -14,7 +14,7 @@
             NgajarYuk
           </div>
         </v-btn>
-
+ 
       </v-toolbar>
     </v-card>
 
@@ -28,7 +28,7 @@
       <v-card class="mx-auto" max-width="480">
         <v-card-title class="black--text mt-8">
           <v-avatar size="100">
-            <img alt="user" :src="'http://localhost:8000' + user.foto_profile" />
+            <img alt="user" :src="'https://api.belajaryuk.xyz' + user.foto_profile" />
           </v-avatar>
           <p class="ml-3">{{ user.nama }}</p>
         </v-card-title>
@@ -130,3 +130,4 @@ export default {
   margin-top: 60px;
 }
 </style>
+20is

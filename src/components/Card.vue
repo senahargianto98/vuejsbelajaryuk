@@ -3,7 +3,7 @@
     <v-card-title class="mt-8">
       <div v-for="users in user.profile">
         <v-avatar size="86">
-          <img alt="user" :src="'http://localhost:8000' + users.foto_profile" />
+          <img alt="user" :src="'https://api.belajaryuk.xyz' + users.foto_profile" />
         </v-avatar>
       </div>
 
@@ -12,8 +12,12 @@
       </p>
     </v-card-title>
 
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn color="orange lighten-2" :href="'/profile/edit/' + user.user_uuid"> Edit </v-btn>
+    </v-card-actions>
+
     <v-card-text>
-      
       <div class="font-weight-bold ml-8 mb-2">Data Diri</div>
       <v-timeline align-top dense>
         <v-timeline-item color="purple" large icon="mdi-school">
@@ -58,7 +62,8 @@
               <strong>Jadwal</strong>
             </div>
             <div v-for="users in user.profile">
-              {{ users.jadwal_start }} pukul {{ users.time_start }} sd {{ users.jadwal_end }} pukul {{ users.time_end }}
+              {{ users.jadwal_start }} pukul {{ users.time_start }} sd
+              {{ users.jadwal_end }} pukul {{ users.time_end }}
             </div>
           </div>
         </v-timeline-item>
@@ -68,9 +73,7 @@
             <div class="font-weight-normal">
               <strong>Tarif</strong>
             </div>
-            <div v-for="users in user.profile">
-              Rp.{{ users.tarif }}
-            </div>
+            <div v-for="users in user.profile">Rp.{{ users.tarif }}</div>
           </div>
         </v-timeline-item>
 
@@ -86,7 +89,6 @@
     </v-card-text>
   </v-card>
 </template>
-
 
 <script>
 import axios from "axios";

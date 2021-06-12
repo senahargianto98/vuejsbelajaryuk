@@ -8,7 +8,7 @@
 
         <v-btn
         href="/"
-        >
+        > 
           <div>
             Home
           </div>
@@ -30,7 +30,7 @@
 
         <div class="col-lg-5">
           <v-form @submit.prevent="submit">
-            <h1>Login</h1>
+            <h1 class="text-center" >Login</h1>
 
             <v-alert dense outlined type="error" v-if="errors.length">
               <p v-for="error in errors">{{ error }}</p>

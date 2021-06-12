@@ -1,26 +1,46 @@
 <template>
   <div>
+    <v-card color="grey lighten-4" flat tile>
+      <v-toolbar dense>
+        <v-toolbar-title>Belajar Yuk</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn href="/profile">
+          <div>Kembali</div>
+        </v-btn>
+      </v-toolbar>
+    </v-card>
+
     <div class="container">
-      <div class="row">
+      <div class="row"> 
         <div class="col-sm-3"></div>
         <div class="col-lg-6">
-          <form enctype="multipart/form-data"  @submit.prevent="submit">
-            
+          <form enctype="multipart/form-data" @submit.prevent="submit">
             <div class="mb-3">
-              <input v-model="id" class="form-control" />
+              <input v-model="id" hidden class="form-control" />
             </div>
 
             <div class="mb-3">
-              <h6>Foto Profile</h6>
+              <v-card-title class="mt-8">
+                <v-avatar size="86">
+                  <img alt="user" :src="'https://api.belajaryuk.xyz' + foto_profile" />
+                </v-avatar>
+              </v-card-title>
+              <h6>Ganti Foto Profile</h6>
               <input type="file" @change="selectFile" />
             </div>
 
-            <div class="mb-3">
-              <input v-model="user_uuid" class="form-control" />
+            <div id="preview">
+              <img v-if="url" :src="url" />
             </div>
 
             <div class="mb-3">
-              <input v-model="user_id" class="form-control" />
+              <input v-model="user_uuid" hidden class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <input v-model="user_id" hidden class="form-control" />
             </div>
 
             <div class="mb-3">
@@ -171,7 +191,6 @@
             </div>
 
             <v-btn color="primary" type="submit">Save</v-btn>
-
           </form>
         </div>
         <div class="col-sm-3"></div>
@@ -187,9 +206,9 @@ export default {
   name: "ProductForm",
   data() {
     return {
-      id:"",
-      user_id:"",
-      user_uuid:"",
+      id: "",
+      user_id: "",
+      user_uuid: "",
       nama: "",
       sekolah: "",
       mengajar: "",
@@ -206,13 +225,13 @@ export default {
       menu3: false,
       time_end: "",
       time_start: "",
-      errors:[],
+      errors: [],
       items: ["matematika", "fisika", "web programming"],
-    }
+    };
   },
   async mounted() {
     if (this.$route.params.id) {
-      const {data} = await axios.get(`profile/edit/${this.$route.params.id}`);
+      const { data } = await axios.get(`profile/edit/${this.$route.params.id}`);
       this.id = data.id;
       this.nama = data.nama;
       this.sekolah = data.sekolah;
@@ -232,6 +251,8 @@ export default {
   },
   methods: {
     selectFile(event) {
+      const file = event.target.files[0];
+      this.url = URL.createObjectURL(file);
       this.foto_profile = event.target.files[0];
     },
     save(jadwal_start) {
@@ -241,28 +262,28 @@ export default {
       this.$refs.menu1.save(jadwal_end);
     },
     async submit() {
-        const data = new FormData();
-        data.append("id", this.id);
-        data.append("user_id", this.user_id);
-        data.append("user_uuid", this.user_uuid);
-        data.append("tarif", this.tarif);
-        data.append("nama", this.nama);
-        data.append("sekolah", this.sekolah);
-        data.append("jurusan", this.jurusan);
-        data.append("mengajar", this.mengajar);
-        data.append("phone", this.phone);
-        data.append("pengalaman", this.pengalaman);
-        data.append("jadwal_start", this.jadwal_start);
-        data.append("jadwal_end", this.jadwal_end);
-        data.append("time_start", this.time_start);
-        data.append("time_end", this.time_end);
-        data.append("foto_profile", this.foto_profile);
+      const data = new FormData();
+      data.append("id", this.id);
+      data.append("user_id", this.user_id);
+      data.append("user_uuid", this.user_uuid);
+      data.append("tarif", this.tarif);
+      data.append("nama", this.nama);
+      data.append("sekolah", this.sekolah);
+      data.append("jurusan", this.jurusan);
+      data.append("mengajar", this.mengajar);
+      data.append("phone", this.phone);
+      data.append("pengalaman", this.pengalaman);
+      data.append("jadwal_start", this.jadwal_start);
+      data.append("jadwal_end", this.jadwal_end);
+      data.append("time_start", this.time_start);
+      data.append("time_end", this.time_end);
+      data.append("foto_profile", this.foto_profile);
 
       if (this.$route.params.id) {
         await axios.post(`profile/edit`, data);
       }
       window.location.href = "/profile";
-    }
-  }
-}
+    },
+  },
+};
 </script>

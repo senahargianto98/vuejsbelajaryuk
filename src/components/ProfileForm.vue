@@ -37,6 +37,10 @@
       </v-alert>
     </div>
 
+    <div id="preview">
+      <img v-if="url" :src="url" />
+    </div>
+
     <div class="mb-3">
       <h6>Foto Profile</h6>
       <input type="file" @change="selectFile" />
@@ -216,6 +220,7 @@ export default {
       time_start: "",
       errors:[],
       items: ["matematika", "fisika", "web programming"],
+      url: null,
     };
   },
   computed: {
@@ -232,6 +237,8 @@ export default {
   },
   methods: {
     selectFile(event) {
+      const file = event.target.files[0];
+      this.url = URL.createObjectURL(file);
       this.foto_profile = event.target.files[0];
     },
     save(jadwal_start) {
@@ -268,3 +275,16 @@ export default {
   },
 };
 </script>
+
+<style>
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 30%;
+  max-height: 500px;
+}
+</style>
