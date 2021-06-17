@@ -45,10 +45,10 @@
                 <v-list-item-title class="text-h5 mb-1">
                   Belajar Pelajaran Sekolah
                 </v-list-item-title>
-                <v-list-item-subtitle>
+                <p>
                   Belajar Pelajaran sekolah dengan guru private terbaik dengan
                   harga 100 rebu per sesi
-                </v-list-item-subtitle>
+                </p>
               </v-list-item-content>
 
               <v-list-item-avatar tile size="120" color="grey">
@@ -67,10 +67,10 @@
                 <v-list-item-title class="text-h5 mb-1">
                   Belajar Web Programming?
                 </v-list-item-title>
-                <v-list-item-subtitle>
+                <p>
                   Belajar Web programming yang sedang Hype? Di sini kalian bisa
                   Belajar dari para Programmer kami.
-                </v-list-item-subtitle>
+                </p>
               </v-list-item-content>
 
               <v-list-item-avatar tile size="120" color="grey">
@@ -94,9 +94,9 @@
                 <v-list-item-title class="text-h5 mb-1">
                   Punya Proyek ?
                 </v-list-item-title>
-                <v-list-item-subtitle>
+                <p>
                   Punya Proyek yang bisa freelance kami kerjakan ? Ceritain aja
-                </v-list-item-subtitle>
+                </p>
               </v-list-item-content>
 
               <v-list-item-avatar tile size="120" color="grey">

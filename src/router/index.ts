@@ -11,6 +11,7 @@ import Fisika from '../views/Fisika.vue'
 import Web from '../views/Web.vue'
 import Sukses from '../views/Sukses.vue'
 import ProfileEditForm from '../views/ProfileEditForm.vue'
+import Meet from '../views/Meet.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes: Array<RouteConfig> = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/meet/:id',
+    name: 'Meet',
+    component: Meet
   },
   {
     path: '/matematika',
